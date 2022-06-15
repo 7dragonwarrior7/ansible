@@ -1,0 +1,4 @@
+ansible-playbook --check first.yaml                   //to check any is compiling issues are there//
+ansible-playbook first.yaml                  //to execute the file//
+
+
