@@ -5,3 +5,27 @@ the hosts file file is created during ansible installation
 
 ip range 205.168.20.[11:14]
 servera   ansible_ssh_host=xx.xx.xx.xxx       //thats how you can define//
+
+
+
+--------you cann add ips in this hosts etc file
+[root@localhost ansible]# vim hosts ---add and wq it
+[root@localhost ansible]# ansible-inventory --list          //then try this command //
+
+{
+    "_meta": {
+        "hostvars": {}
+    },
+    "all": {
+        "children": [
+            "ungrouped"
+        ]
+    },
+    "ungrouped": {
+        "hosts": [
+            "192.168.15.129",
+            "192.168.15.130"
+        ]
+    }
+}
+[root@localhost ansible]# 
