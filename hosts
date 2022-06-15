@@ -1,0 +1,7 @@
+/etc/ansible/hosts
+All remote clients are considered inventory in ansible 
+ansible keeps its inventory information in host file located : /etc/ansible/hosts
+the hosts file file is created during ansible installation
+
+ip range 205.168.20.[11:14]
+servera   ansible_ssh_host=xx.xx.xx.xxx       //thats how you can define//
