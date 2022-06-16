@@ -1,0 +1,29 @@
+system 1
+
+---
+- name: "check remote client connectivity"
+  hosts: localhost
+
+  tasks:
+          - name: Test connectivity
+            ping:
+
+~                                        
+
+
+system 2
+---
+- name: "check remote clients connectivity"
+  hosts: all
+
+
+
+  tasks:
+
+          - name: test connectivity
+            ping:
+
+
+
+~                                                                                                       
+~                                                            
