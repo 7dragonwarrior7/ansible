@@ -1,0 +1,35 @@
+in serverb /home/ozone/cfile.sh ------------> this used to create touch example file in the same path 
+[root@localhost ozone]# crontab -l   -------->before scenario in serverb
+no crontab for root
+
+[root@localhost ozone]# cat cfile.sh 
+#!/bin/bash
+
+touch /home/ozone/example
+
+
+------------------
+in server a
+
+[root@localhost playbooks]# ll /etc/ansible/playbooks/shellscript.yaml 
+-rw-r--r--. 1 root root 149 Jun 16 18:54 /etc/ansible/playbooks/shellscript.yaml
+[root@localhost playbooks]# 
+
+vim /etc/ansible/playbooks/shellscript.yaml
+---
+- name: playbook for shell scipt
+  hosts: 192.168.15.129
+
+  tasks:
+          - name: run shell script
+            shell: "/home/ozone/cfile.sh"
+:wq
+-----
+ansible-playbook   cronjob.yaml  --------------->after successful running
+in server b
+[root@localhost ozone]# crontab -l
+#Ansible: this job is scheduled by ansible
+0 10 * * 4 /home/ozone/cfile.sh
+[root@localhost ozone]# 
+
+
