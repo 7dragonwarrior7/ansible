@@ -1,0 +1,26 @@
+in server b [root@localhost playbooks]# grep  hdfc /etc/passwd-------->no hdfc user
+
+
+in server a,in playbooks
+
+
+vim adduser.yaml
+---
+- name: playbook for creating users
+  hosts: all
+
+  tasks:
+         - name: create user
+           user:
+
+                         name: hdfc
+                         home: /home/hdfc
+                         shell: /bin/bash
+
+ansible-playbook  adduser.yaml
+-------------------------
+in server b
+after effects
+[root@localhost playbooks]# grep  hdfc /etc/passwd
+hdfc:x:1002:1002::/home/hdfc:/bin/bash
+[root@localhost playbooks]# 
