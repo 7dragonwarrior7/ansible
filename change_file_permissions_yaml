@@ -1,0 +1,24 @@
+in server b cretae touch /home/ozone/linux2
+[root@localhost playbooks]# ll /home/ozone/linux2
+-rw-r--r--. 1 root root 0 Jun 16 09:00 /home/ozone/linux2
+
+in servera
+vim file_permission.yaml
+---
+- name: change file permissions
+  hosts: all
+
+  tasks:
+          - name: Files Permissions
+            file:
+                          path: /home/ozone/linux2
+                          mode: a+x
+
+:wq
+ansible-playbook   file_permission.yaml
+
+
+in serverb
+u can see the following changes
+[root@localhost playbooks]# ll /home/ozone/linux2
+-rwxr-xr-x. 1 root root 0 Jun 16 09:00 /home/ozone/linux2
