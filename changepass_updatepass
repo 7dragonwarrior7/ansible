@@ -1,0 +1,20 @@
+In server a there is already created user is existing,lets say that user doent have passwd or passwd to be update,then we follow this scenario.
+In servera,we have "hdfc" user which require passwd to be created
+vim changepass.yaml
+---
+- name: add or update user password
+  hosts: all
+
+  tasks:
+          - name: change "hdfc" password
+            user:
+                    name: hdfc
+                    update_password: always
+                    password: "{{ newpassword|password_hash('sha512')}}"                 //this syntax should be exact same//
+:wq
+------------
+ansible-playbook  --check changepass.yaml --extra-vars newpassword=abc123
+ansible-playbook   changepass.yaml --extra-vars newpassword=abc123
+-------
+in other server you check 
+su - hdfc from ozone user // to check password activated or not//
