@@ -1,0 +1,75 @@
+system1
+[root@localhost playbooks]# echo somestuff >/home/chendu/some.cfg
+[root@localhost playbooks]# ls -ltr /home/chendu
+total 4
+drwxr-xr-x. 2 chendu chendu  6 May 27 04:42 Videos
+drwxr-xr-x. 2 chendu chendu  6 May 27 04:42 Templates
+drwxr-xr-x. 2 chendu chendu  6 May 27 04:42 Public
+drwxr-xr-x. 2 chendu chendu  6 May 27 04:42 Pictures
+drwxr-xr-x. 2 chendu chendu  6 May 27 04:42 Music
+drwxr-xr-x. 2 chendu chendu  6 May 27 04:42 Downloads
+drwxr-xr-x. 2 chendu chendu  6 May 27 04:42 Documents
+drwxr-xr-x. 2 chendu chendu  6 May 27 04:42 Desktop
+-rw-r--r--. 1 root   root   10 Jun 16 06:59 some.cfg
+[root@localhost playbooks]# 
+
+cd /etc/ansible/playbooks/
+vim copy.yaml
+-----------------------
+for system 1
+vim copy_file_fromlocal_to_all.yaml
+--
+- name: copy file from local host  to remote clients
+  hosts: all
+
+  tasks:
+         - name: copying file from host to all ungrouped servers
+           become: true
+           copy:
+                   src:  /etc/ansible/playbooks/copy_file_fromlocal_to_all.yaml
+                   dest: /etc/ansible/playbooks/
+
+esc :wq
+ansible-playbook --check copy_file_fromlocal_to_all.yaml            //to check compilation errors //
+ansible-playbook  copy_file_fromlocal_to_all.yaml                   // to execute the command //
+//to check whether playbook worked or not ,check files in other server//
+
+ll /etc/ansible/playbooks/copy_file_fromlocal_to_all.yaml
+
+
+
+
+
+
+
+
+
+
+-----------------
+
+for system 2
+---
+- name: copy file from local host  to remote clients
+  hosts: all
+
+  tasks:
+         - name: copying file from host to all ungrouped servers
+           become: true
+           copy:
+                   src:  /etc/ansible/playbooks/packinstall.yaml
+                   dest: /etc/ansible/playbooks/
+                   owner: ozone
+                   group: ozone
+                   mode: 0644
+after saving check in other server
+[root@localhost playbooks]# ll /etc/ansible/playbooks
+total 24
+-rw-r--r--. 1 root  root  131 Jun 16 07:45 clientstatus.yaml
+-rw-r--r--. 1 root  root  317 Jun 16 07:49 copy_file_fromlocal_to_all.yaml
+-rw-r--r--. 1 root  root  121 Jun 16 07:50 first.yaml
+-rw-r--r--. 1 root  root  133 Jun 16 07:50 helloworld.yaml
+-rw-r--r--. 1 root  root  188 Jun 16 07:51 mtask.yml
+-rw-r--r--. 1 ozone ozone 306 Jun 16 07:51 packinstall.yaml
+
+~                                                                                                       
+~                                                        
