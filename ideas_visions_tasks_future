@@ -1,3 +1,3 @@
 1)--------->remote ping automation can be used to check all ill pings working or not            // check with rajes/naidu/suresh //--status --INC
 2)--------->shell scripting required logs with use of for loop conditions                       // check with naidu //--status  --INC
-3)--------->
+3)--------->how to create multiple users and create passwords with ansible                      // for instance in hdfc user act and passwd management in group of servers//
