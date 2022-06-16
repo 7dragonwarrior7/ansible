@@ -41,4 +41,11 @@ apache      5322  0.2  0.4 1478824 14112 ?       Sl   14:51   0:00 /usr/sbin/htt
 apache      5323  0.2  0.4 1347700 12064 ?       Sl   14:51   0:00 /usr/sbin/httpd -DFOREGROUND
 apache      5324  0.0  0.4 1347700 12064 ?       Sl   14:51   0:00 /usr/sbin/httpd -DFOREGROUND
 root        5832  0.0  0.0 221936  1136 pts/0    R+   14:51   0:00 grep --color=auto httpd
+------------
+login back to other server and check
+check httpd package status
+rpm -qa |grep http
+systemctl status httpd
+systemctl status firewalld
+firewall -cmd --list-all
 
