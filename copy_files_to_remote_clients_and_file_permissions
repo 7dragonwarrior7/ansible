@@ -20,14 +20,15 @@ for system 1
 vim copy_file_fromlocal_to_all.yaml
 --
 - name: copy file from local host  to remote clients
-  hosts: all
+  hosts: all                                                                  //run it on all hosts//
 
   tasks:
-         - name: copying file from host to all ungrouped servers
-           become: true
-           copy:
+         - name: copying file from host to all ungrouped servers                    //description of the task//
+           become: true                                                       //transfer as a current user//
+           copy:                                                            //run the following task(s)//
                    src:  /etc/ansible/playbooks/copy_file_fromlocal_to_all.yaml
                    dest: /etc/ansible/playbooks/
+                   
 
 esc :wq
 ansible-playbook --check copy_file_fromlocal_to_all.yaml            //to check compilation errors //
@@ -56,11 +57,11 @@ for system 2
          - name: copying file from host to all ungrouped servers
            become: true
            copy:
-                   src:  /etc/ansible/playbooks/packinstall.yaml
-                   dest: /etc/ansible/playbooks/
-                   owner: ozone
-                   group: ozone
-                   mode: 0644
+                   src:  /etc/ansible/playbooks/packinstall.yaml                      //source of the file in as current user//
+                   dest: /etc/ansible/playbooks/                                      //destination of the file in host servers//    
+                   owner: ozone                                                       //change of ownership//
+                   group: ozone                                                       //change of ownership//
+                   mode: 0644                                                         //change of mode//
 after saving check in other server
 [root@localhost playbooks]# ll /etc/ansible/playbooks
 total 24
