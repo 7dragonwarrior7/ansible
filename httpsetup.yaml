@@ -1,0 +1,44 @@
+vim httpsetup.yaml in servera
+---
+- name: setup httpd and open firewall port
+  hosts: all
+
+  tasks:
+
+          - name: install apache packages
+            yum:
+                          name: httpd
+                          state: present
+
+          - name: start httpd
+            service:
+                          name: httpd
+                          state: started
+
+          - name: Open port 80 for http acess
+            firewalld:
+                          service: http
+                          permanent: true
+                          state: enabled
+
+          - name: Restart firewalld service to load firewall changes service
+            service:
+                          name: firewalld
+                          state: reloaded
+
+esc :wq
+-----------in serverb 
+[root@localhost playbooks]# ps -aux | grep httpd
+root        4777  0.0  0.0 221936  1164 pts/0    R+   14:46   0:00 grep --color=auto httpd
+
+ansible-playbook  httpsetup2.yaml
+ after succesful setup in serverb
+
+[root@localhost playbooks]# ps -aux | grep httpd
+root        5320  1.2  0.3 276012 11088 ?        Ss   14:51   0:00 /usr/sbin/httpd -DFOREGROUND
+apache      5321  0.0  0.2 289896  8392 ?        S    14:51   0:00 /usr/sbin/httpd -DFOREGROUND
+apache      5322  0.2  0.4 1478824 14112 ?       Sl   14:51   0:00 /usr/sbin/httpd -DFOREGROUND
+apache      5323  0.2  0.4 1347700 12064 ?       Sl   14:51   0:00 /usr/sbin/httpd -DFOREGROUND
+apache      5324  0.0  0.4 1347700 12064 ?       Sl   14:51   0:00 /usr/sbin/httpd -DFOREGROUND
+root        5832  0.0  0.0 221936  1136 pts/0    R+   14:51   0:00 grep --color=auto httpd
+
