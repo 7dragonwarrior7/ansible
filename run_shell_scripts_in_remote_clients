@@ -1,0 +1,29 @@
+in serverb create shell scipt
+@serverb -- vim /home/ozone/cfile.sh
+#!/bin/bash
+
+touch /home/ozone/example
+:wq
+----------------
+
+in servera
+vim /etc/ansible/playbooks/shellscript.yaml
+
+---
+- name: playbook for shell scipt
+  hosts: 192.168.15.129
+
+  tasks:
+          - name: run shell script
+            shell: "/home/ozone/cfile.sh"
+
+:wq
+
+ansible-playbook  shellscript.yaml 
+
+-----------------
+in server b
+
+[root@localhost ozone]# ll /home/ozone/example 
+-rw-r--r--. 1 root root 0 Jun 16 18:54 /home/ozone/example                --------example file is created
+
