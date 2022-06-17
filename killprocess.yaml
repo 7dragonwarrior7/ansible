@@ -1,0 +1,25 @@
+task -----------?killing top pid in serverb from server a
+vim /etc/ansible/playbook/killprocess.yaml
+---
+- name: Find a process and kill it
+  hosts: all
+
+  tasks:
+          - name: get running processes from remote host
+            ignore_errors: yes
+            shell: "ps -few | grep top | awk '{print $2}'"
+            register: running_process
+
+          - name: kill running processes
+            ignore_errors: yes
+            shell: "kill {{ item }}"
+            with_items: "{{ running_process.stdout_lines }}"
+~           
+:wq
+    
+-------------
+before executing this playbook in server a ,  run top command in server b
+
+now execute this file (yaml.file) in server b
+
+you can observer in server b  top command is closed     
