@@ -1,0 +1,27 @@
+here we will install httpd , start the httpd and telnet package in server b 
+vim /etc/ansible/playbooks/httptelnet.yaml
+---
+- name: httpd and telnet
+  hosts: all
+
+  tasks:
+          - name: install httpd
+            yum:
+                    name: httpd
+                    state: present
+
+          - name: start httpd
+            service:
+                      name: httpd
+                      state: started
+          - name: install telnet
+            yum:
+                      name: telnet
+                      state: present
+
+-----------------------------------------------
+ansible-playbook  httptelnet.yaml
+ansible-playbook  httptelnet.yaml  --start-at-task 'task name'  eg:ansible-playbook  httptelnet.yaml --start-at-task 'start httpd' //it will skip earlier tasks //
+
+
+
