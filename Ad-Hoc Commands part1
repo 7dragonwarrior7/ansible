@@ -1,0 +1,19 @@
+Ad-Hoc commands run on as needed basis and usually for those tasks that do not repeat 
+
+Syntax for Ad-Hoc command:
+ansible [target] -m [module] -a "[module options]"
+
+example ansible ad-hoc commands:
+
+ping localhost
+
+#ansible localhost -m ping
+
+creating a file on all remote clients
+#ansible all -m file -a "path=/home/ozone/adhoc1 state=touch mode=700"
+
+Deleting a file on all remote clients
+#ansible all -m file -a "path=/home/ozone/adhoc1 state=absent"
+
+copying a file to remote clients
+#ansible all -m copy -a "src=/tmp/adhoc2 dest=/home/iafzal/adhoc2"   ------------>before executing this file create adhoc2 file in tmp in other server
