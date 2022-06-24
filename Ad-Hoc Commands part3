@@ -13,4 +13,4 @@ Getting system information from remote clients
 #ansible all -m setup
 
 you can run commands on the remote host without a shell module e.g. reboot client1
-#ansible client -a "/sbin/rebbot"
+#ansible all -a "/sbin/rebbot"
