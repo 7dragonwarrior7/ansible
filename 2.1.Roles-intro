@@ -1,0 +1,31 @@
+Roles Simplifies long playbooks by grouping tasks into smaller playbooks
+or
+The role are the way of breaking a playbook into multiple playbook files.This simplifies writing comples playbooks, and it makes them easier to reuse.
+Writing ansible code to manage the same service for multiple environments creates more complexity and it becomes difficult to manage in one ansible playbook.Also sharing code among other teams become difficult.That is where Role helps solve these problems.
+Roles are like templates that are most of the time static and can be called by the playbooks
+Roles allow the entire configuration to be grouped in:
+Tasks 
+Modules
+Variables 
+Handlers
+
+-------------------
+lets say for east-webservers you want to do 4 tasks and for east-servers you want to do 2 tasks,in total there will be 6 tasks and it will be clumsy to be respresented in single playbook.
+THats why we use Role to look easier and easy to catchup and have better organized look.
+how we can do?
+for east-webservers lets write Rolesplaybook: as "fullinstall"---->having 4 tasks(1.install https,start httpd,open port http on firewall ,restart firewalld)  
+and for west-webservers lets write as rolesplaybook: as "basicinstall -----------> havimg only 2 tasks(install https and start httpd)"
+------------- 
+filan simplified version of playbook will be in the form of
+---
+- name:Full install
+ hosts:east-webservers
+  roles:
+   - fullinstall
+ -name:Basic install
+ hosts:west-webservers
+  roles:
+   - basicinstall
+   
+   ------------
+   For better clarity fowllow examples
