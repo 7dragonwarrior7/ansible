@@ -14,7 +14,7 @@ roles
         └── main.yaml
 
 4 directories, 2 files
--------------------
+-------------------(In server A)
 Target fulinstall roles
 cd /etc/ansible/roles/fullinstall
 [root@localhost fullinstall]# vim main.yaml
@@ -39,7 +39,7 @@ cd /etc/ansible/roles/fullinstall
           state: reloaded
 
 :wq
--------------------
+-------------------(In server A)
 Target basicinstall roles
 cd /etc/ansible/roles/basicinstall
 [root@localhost fullinstall]# vim main.yaml
@@ -59,7 +59,33 @@ cd /etc/ansible/roles/basicinstall
 ~                            
 :wq
 
--------------
+-------------(In server A)
 now write final playbook
+To make use of roles(fullinstall and basicinstall) we Create byrole.yaml file in playbooks and use role files in role directories as prewritten templates.
+
+---
+- name: Full install
+  hosts: all
+  roles:
+          - fullinstall                       //prewritten role in roles directory//
+
+- name: Basic install
+  hosts: localhost
+  roles:
+          - basicinstall                      //prewritten role in roles directory//
+
+~   :wq                                                                                                    
+~       
+-----------------(In server b close/remove http in firewall,before executing playbooks in server a)
+#firewall-cmd --list-all --------------->shows http in its list
+#firewall-cmd --permanent --remove-service=http ---------------------> to remove http in its list
+#firewall-cmd --reload --------------------->to make changes get reflected reload the firewall
+#firewall-cmd --list-all --------------->shows http in its list(to check http is removed or not).
+--------------
+run ansible-playbooks byrole.yaml in server a and after succesful running/executing in servera check in serverb(whether changes are made or not)
 
 
+
+
+
+~                                      
