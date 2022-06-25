@@ -44,4 +44,22 @@ Target basicinstall roles
 cd /etc/ansible/roles/basicinstall
 [root@localhost fullinstall]# vim main.yaml
 ---
-- name:
+- name:[root@localhost fullinstall]# cd /etc/ansible/roles/basicinstall/
+[root@localhost basicinstall]# vim main.yaml
+---
+- name: install httpd package
+  yum:
+         name: httpd
+         state: present
+
+- name: start httpd
+  service:
+         name: httpd
+         state: started
+~                            
+:wq
+
+-------------
+now write final playbook
+
+
