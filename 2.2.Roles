@@ -1,0 +1,47 @@
+[root@localhost ansible]# ls
+ansible.cfg  hosts  playbooks  roles
+[root@localhost ansible]# pwd
+/etc/ansible
+[root@localhost ansible]# ls
+ansible.cfg  hosts  playbooks  roles
+[root@localhost ansible]# tree roles
+roles
+├── basicinstall
+│   └── tasks
+│       └── main.yaml
+└── fullinstall
+    └── tasks
+        └── main.yaml
+
+4 directories, 2 files
+-------------------
+Target fulinstall roles
+cd /etc/ansible/roles/fullinstall
+[root@localhost fullinstall]# vim main.yaml
+---
+- name: Install httpd package
+  yum:
+          name: httpd
+          state: present
+
+- name: startt httpd
+  service:
+          name: httpd
+          state: started
+- name: open port for httpd
+  firewalld:
+          service: http
+          permanent: true
+          state: enabled
+- name: Restart firewalld
+  service:
+          name: firewalld
+          state: reloaded
+
+:wq
+-------------------
+Target basicinstall roles
+cd /etc/ansible/roles/basicinstall
+[root@localhost fullinstall]# vim main.yaml
+---
+- name:
