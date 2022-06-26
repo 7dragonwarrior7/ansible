@@ -1,0 +1,5 @@
+Handlers
+Handlers are executed at the end of the play once all tasks are finished.In Ansible,handlers are typically used to start,reload,and stop services
+Sometimes you want to run a task only when a change is made on a machine.For example,you want to restart a service if a task updates the configuration of that service,but not if the configuration is unchanges.
+Remember the case when we had to reload the firewalld because we wanted to enable http service? Yes,thats is a perfect example of using handlers.
+So basically handlers are tasks that only run when notified
