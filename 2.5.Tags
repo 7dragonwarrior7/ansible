@@ -42,4 +42,8 @@ u can check the status of httpd.
 
 
 after installation you can use other tag of httpd
+--------------------------------------------
+ansible-playbook httpbytags.yaml --skip-tags i-httpd ---------- > To skip a task using tag
+--------------------------------------------
+
 
