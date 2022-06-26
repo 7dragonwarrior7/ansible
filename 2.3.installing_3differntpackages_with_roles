@@ -1,0 +1,29 @@
+First we will create following directories and sub directories
+[root@localhost ~]# cd /etc/ansible/roles/
+[root@localhost roles]# mkdir apache chrony dns
+[root@localhost roles]# mkdir apache/tasks chrony/tasks dns/tasks
+[root@localhost roles]# touch apache/tasks/main.yaml
+[root@localhost roles]# touch chrony/tasks/main.yaml
+[root@localhost roles]# touch dns/tasks/main.yaml
+[root@localhost roles]#  tree /etc/ansible/roles
+/etc/ansible/roles
+├── apache
+│   └── tasks
+│       └── main.yaml----------------------->these you need to fill the yaml file (i)
+├── basicinstall
+│   └── tasks
+│       └── main.yaml----------------------->these already filled
+├── chrony
+│   └── tasks
+│       └── main.yaml----------------------->these you need to fill the yaml file (ii)
+├── dns
+│   └── tasks
+│       └── main.yaml----------------------->these you need to fill the yaml file (iii)
+└── fullinstall
+    └── tasks
+        └── main.yaml----------------------->these already filled
+
+10 directories, 5 files
+[root@localhost roles]# 
+
+-------------------------------
