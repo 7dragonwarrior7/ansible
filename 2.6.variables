@@ -1,0 +1,45 @@
+Variables are like containers that hold the defined value whicj can be used reptetively
+Note:
+1.name can include letters,numbers and underscore
+2.Name should always start with a letter
+3.Cannot have a spaces,dots(.) or hypen(-) in variable name
+
+Example:1
+---
+- name: Install some package
+  hosts: all
+  vars:
+    sespackage: sesquipedlianism
+  tasks:
+  - name: package install
+    yum: 
+    name: "{{ sespackage }}"
+    state: present
+  - name: start service
+    service:
+      name: "{{ sespackage }}"
+      state: started
+      -------------------------------
+Example:2
+vim /etc/ansible/playbookvim/httpbyvariable.yaml
+
+---
+- name: Package Installation
+  hosts: all
+  vars:
+    pack: httpd
+  tasks:
+  - name: package install
+    yum: 
+    name: "{{ pack }}"
+    state: present
+  - name: start service
+    service:
+      name: "{{ pack }}"
+      state: started
+:wq
+[root@localhost playbooks]# ansible-playbook --check  httpbyvariable.yaml
+
+---------------------------
+      
+      
