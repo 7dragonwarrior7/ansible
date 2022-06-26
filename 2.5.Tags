@@ -1,0 +1,26 @@
+Tags are the References or aliases to a task
+Insteead of running an entire Ansible playbook,use tags to target a specific tasks you need to run
+
+#vim httpbytags.yaml
+---
+- name: Setup Apache server
+  hosts: localhost
+  tasks:
+          - name: Install httpd
+            yum:
+                name: httpd
+                state: present
+            tags: i-httpd ------------------ > tags
+
+          - name: Start httpd
+            service:
+                    name: httpd
+                    state: started
+            tags: s-httpd ------------------ > tags
+~                           
+:wq
+ansible-playbook httpbytags.yaml ----------- > execute the command = normal usage
+how to use tags?
+ansible-playbook httpbytags.yaml -t i-httpd -------------------- > to  execute i-httpd tagged version task
+ansible-playbook httpbytags.yaml -t s-httpd -------------------- > to  execute s-httpd tagged version task
+ansible-playbook httpbytags.yaml --list-tags -------------------- > to list all tags in a playbook
