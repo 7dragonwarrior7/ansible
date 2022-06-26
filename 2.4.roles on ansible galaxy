@@ -1,0 +1,33 @@
+you can find a ton of resources on roles through ansible galaxy
+you can download pre-defined or pre-written roles from the ansible galaxy
+www.galaxy.ansible.com
+
+------------
+[root@localhost roles]# ansible-galaxy install singleplatform-eng.users
+- downloading role 'users', owned by singleplatform-eng
+- downloading role from https://github.com/singleplatform-eng/ansible-users/archive/v1.2.6.tar.gz
+- extracting singleplatform-eng.users to /root/.ansible/roles/singleplatform-eng.users
+- singleplatform-eng.users (v1.2.6) was installed successfully
+[root@localhost roles]# cd /root
+[root@localhost ~]# cd .ansible/
+[root@localhost .ansible]# cd roles/
+[root@localhost roles]# ls -l
+total 0
+drwxr-xr-x. 6 root root 111 Jun 26 19:03 singleplatform-eng.users
+[root@localhost roles]# cd singleplatform-eng.users/
+[root@localhost singleplatform-eng.users]# ls -l
+total 8
+drwxr-xr-x. 2 root root   22 Jun 26 19:03 defaults
+-rw-rw-r--. 1 root root 1057 Jan 31  2019 LICENSE
+drwxr-xr-x. 2 root root   50 Jun 26 19:03 meta
+-rw-rw-r--. 1 root root 3708 Jan 31  2019 README.md
+drwxr-xr-x. 2 root root   22 Jun 26 19:03 tasks
+drwxr-xr-x. 2 root root   22 Jun 26 19:03 tests
+[root@localhost singleplatform-eng.users]# cd tasks/
+[root@localhost tasks]# ll
+total 4
+-rw-rw-r--. 1 root root 2456 Jan 31  2019 main.yml
+[root@localhost tasks]# cat main.yml 
+--- 
+you can find pre written scripts to use in playbooks. or find it in galaxy.ansible.com
+--------------
