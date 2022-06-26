@@ -1,3 +1,7 @@
+you can save thes details in hosts in ansible file
+-----
+
+
 [webservers]
 client1.xyz.com
 client2.xyz.com
