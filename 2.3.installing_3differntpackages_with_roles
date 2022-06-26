@@ -27,3 +27,10 @@ First we will create following directories and sub directories
 [root@localhost roles]# 
 
 -------------------------------
+---
+- name: Install packages
+  hosts: all
+  roles:
+         - apache
+         - chrony
+         - dns
