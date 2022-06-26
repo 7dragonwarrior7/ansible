@@ -41,5 +41,66 @@ vim /etc/ansible/playbookvim/httpbyvariable.yaml
 [root@localhost playbooks]# ansible-playbook --check  httpbyvariable.yaml
 
 ---------------------------
+ Example:3
+ 
+ ---
+- name: copy file to remote clients
+  hosts: all
+  vars:
+          srcfile: /home/ozone/somefile
+  tasks:
+          - name: copying file
+            become: true
+            copy:
+                    src: "{{ srcfile }}"
+                    dest: /tmp
+                    owner: ozone
+                    group: ozone
+                    mode: 0644
+:wq
+ [root@localhost playbooks]# touch /home/ozone/somefile
+ [root@localhost playbooks]# ansible-playbook --check  copyfilebyvariable.yaml
+check in server b
+
+ ----------------------------------
+ Example:4
+ vim createfilebyvariable.yaml
+
+ ---
+- name:create a file
+  hosts: localhost
+  vars:
+          file_name:kramer
+  tasks:
+
+
+- name: create file in /tmp
+  file:
+          state:touch
+  path: /tmp/"{{ file_name }}".txt
+~                                                                                                          
+~  :wq
+ansible-playbook createfilebyvariable.yaml
+
+------------------------------------------------
+example5:explore
+vim hellobyvariable.yaml
+---
+- name: print Hello World
+  hosts: all
+  vars:
+    say: Hello World!
+  tasks: 
+  - name: Ansible Variable Basic Usage
+      debug:
+      msg: "{{ say }}"
       
+:wq
+ansible-playbook hellobyvariable.yaml
+
+-----------------------------
+
+
+
+---------------------------
       
