@@ -1,0 +1,46 @@
+ Loop is a powerful programmin tool that enable yoy to execute a set of commands repeatedly
+ 
+ We can automate specifi task but if that task itself repetitive?
+ eg: Changing permmissions on hundreds of files
+ creating multiple users at once
+ Installing many packages on hundreds of servers
+ 
+ Loops can worl hand with conditions as we loop certain task until that condition is met
+ When Creating loops, ansible provides these two directives: loop and with_* keyword.
+ 
+ 
+ -------------------
+ To Create multiple users in Linux Command line We Use  "For loop"
+ e.g:
+ # for u in jerry kramer eliame: do useradd $u: done
+ 
+Normal process:
+
+vim userloop.yaml
+---
+- name: Create users
+hosts: localhost
+
+tasks: 
+- name: Create jerry
+  user: 
+  name: jerry
+- name: Create kramer
+  user:
+  name: kramer
+
+- name: create eliane
+  user:
+  name: eliane
+  
+-----------------------
+Adding loop parameter
+vim userbyloop1.yaml
+---
+- name: create users through loop
+user:
+- name: "{{ item }}"
+ loop:
+- jerry
+- kramer
+- eliane
