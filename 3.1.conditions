@@ -1,0 +1,49 @@
+ Condition execution allow ansible to take actions on its own based on certain conditions
+ under condition certain values must be met before executing a tasks
+ We can use the When statement to make Ansible Automation more smart
+ 
+ Eg:-name:playbook description
+ hosts: localhost
+ tasks:
+ -name:start a service
+ when: A == "B"
+ Service:
+  name: servicename
+  state: started
+  --------------
+  Real life Example
+  ---
+  - name: Install Apache Webserver
+  hosts: localhost
+  tasks:
+  - name: Install Apache on Ubuntu Server
+  apt-get:
+  name: apche2
+  state: present
+  When: ansible_os_family == "Ububtu" --------------- >ansible built-in variable
+  - name: Install Apache on CentOS Server
+  Yum:
+  name: httpd
+  state: Present
+  When: ansible_os_family ==== "Redhat"
+  #ansible localhost -m setup
+  ------------
+  
+  eg: 
+  ---
+- name: Install apache webserver
+  hosts: localhost
+
+  tasks:
+         - name: Install apache on Debian
+           apt:
+                    name: apache2
+                    state: present
+           When: ansible_os_family == "Debian"
+
+         - name: Install apache on Redhat
+           yum:
+                    name: httpd
+                    state: present
+           when: ansible_os_family == "RedHat"
+:wq
